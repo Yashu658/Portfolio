@@ -1,0 +1,18 @@
+.full{
+    display: flex;
+}
+.container{
+    width: 100px;
+    height:100px;
+    margin: 50px 50px;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    
+}
+#h1{
+    align-items: center;
+}
+.col{
+    margin-top: 100px;
+}
