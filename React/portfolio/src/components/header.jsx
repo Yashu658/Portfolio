@@ -2,8 +2,11 @@ import React from "react";
 const Header=()=>{
     return(
         <>
-        <div className="h-15 text-black bg-blue-500  font-bold flex items-center justify-center ">
-            I am Full Stack Developer</div>
+    <div className="h-35 text-black bg-blue-500  font-bold grid items-center justify-center ">
+    <span className='text-4xl font-bold  flex justify-center' >Yashu Sharma</span> 
+        <span className='text-2xl font-bold  flex justify-center border-b-2' >Full Stack Developer</span>
+    
+    </div>
         </>
     )
 }

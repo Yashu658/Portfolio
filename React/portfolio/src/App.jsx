@@ -18,7 +18,7 @@ import Contactme from "./pages/contactme";
       <header>
       <Header/>
       </header>
-      <main className="flex">
+      <main className="">
       <Sidebar/>
       <Routes>
         <Route path="/"element={<Home/>}/>
