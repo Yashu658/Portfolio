@@ -8,8 +8,8 @@ const Header = () => {
     
     <>
     <div>
-    <div className="h-18 font-bold bg-blue-400 flex items-center">
-            <FaMoon />
+    <div className="h-18 font-bold bg-blue-400 flex items-center justify-evenly font-mono text-4xl">
+            <FaMoon className='bg-yellow-200 justify-center'/>
             <span className="ml-150">Weather</span>
         </div>
 

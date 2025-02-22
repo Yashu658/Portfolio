@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Header from "./components/header";
 import Sidebar from './components/sidebar';
+import Weather from './components/weather';
 import { BrowserRouter as Router, Route,Routes} from "react-router-dom"
 
 function App() {
@@ -10,12 +11,13 @@ function App() {
   return (
     <>
     <Router>
-      <header>
+      
         <Header/>
-      </header>
-      <main>
+      
+      
+        <Weather/>
       <Sidebar/>
-      </main>
+      
       
     </Router>
       
