@@ -1,0 +1,19 @@
+{
+  "name": "expresstu",
+  "version": "1.0.0",
+  "description": "I am learning express",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon .src/server.js"
+  },
+  "author": "Yashu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
