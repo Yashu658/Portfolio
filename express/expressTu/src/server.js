@@ -3,6 +3,16 @@ const app=express();
 
 app.use(express.json());
 
+
+const middleware = (req,res,next) => {
+
+    console.log(`${req.method}|${req.url}`);
+    next();
+}
+app.use(middleware);
+
+
+
 app.get("/login",(req,res)=>[
     res.send("Login Done")
 ])
@@ -16,7 +26,7 @@ app.post("/signup",(req,res)=>{
     console.log("User Login Data");
     
     console.log(nm,unm,pass);
-    res.status(400).json({message:"User Created"})
+    res.status(200).json({message:"User Created"})
 })
 
 

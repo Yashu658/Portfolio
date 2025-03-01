@@ -1,37 +1,40 @@
-import React from 'react'
-import yashu from "../assets/image/yashu.jpeg";
-import {NavLink} from "react-router-dom"
+import React from "react";
+import ys from "../assets/ys.pdf"
+
+import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <>
-   
-    <div className=''>
-    <div className="flex w-auto h-[10vh] bg-amber-100">
-    <NavLink to={"/"}>
-             <span className='text-blue-800 text-2xl my-1 font-bold mx-16'>Home</span>
-            </NavLink>
-            <NavLink to={"/exp"}>
-             <span className='text-blue-800 text-2xl my-1 font-bold mx-16'>Experience</span>
-            </NavLink>
-            <NavLink to={"/pro"}>
-             <span className='text-blue-800 text-2xl my-1 font-bold mx-16'>Projects</span>
-            </NavLink>
-            <NavLink to={"/quali"}>
-             <span className='text-blue-800 text-2xl my-1 font-bold mx-16'>Qualification</span>
-            </NavLink>
-          
-            <NavLink to={"/hobbi"}>
-             <span className='text-blue-800 text-2xl my-1 font-bold mx-16'>Hobbies</span>
-            </NavLink>
-            <NavLink to={"/cont"}>
-             <span className="text-blue-800 text-2xl my-1 font-bold mx-16 ">Contactme</span>
-            </NavLink>
-    </div>
-    <div className="flex justify-center bg-blue-300 text-black">
-        <img src={yashu} alt="yashu" className="border-4 rounded-full w-60 h-60" />
+      <div className="ys ">
+      <nav className="fixed top-0 left-0 w-full bg-black bg-opacity-80 shadow-md py-4 px-6 flex justify-between items-center z-50">
+          <NavLink to={"/"}>
+            <span className="text-white text-2xl font-semibold mx-4 px-8 hover:text-yellow-300 ">
+              Home
+            </span>
+          </NavLink>
+          <NavLink to={"/pro"}>
+            <span className="text-white text-2xl font-semibold mx-4 px-8 hover:text-yellow-300">
+              Projects
+            </span>
+          </NavLink>
+          <NavLink to={"/quali"}>
+            <span className="text-white text-2xl font-semibold mx-4 px-8 hover:text-yellow-300">
+              Qualification
+            </span>
+          </NavLink>
+          <NavLink to={"/hobbi"}>
+            <span className="text-white text-2xl font-semibold mx-4 px-8 hover:text-yellow-300">
+              Hobbies
+            </span>
+          </NavLink>
+          <NavLink to={"/contact"}>
+            <span className="text-white text-2xl font-semibold mx-4 px-8 hover:text-yellow-300">
+            ContactMe
+            </span>
+          </NavLink>
+        </nav> 
       </div>
-    </div>
     </>
-  )
-}
+  );
+};
 export default Sidebar;
