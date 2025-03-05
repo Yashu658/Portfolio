@@ -10,17 +10,20 @@ import {
 } from "../controllers/user.controller.js";
 
 
-import { userLog } from "../middlewares/user.middleware.js";
+import { userLog,confirmUser } from "../middlewares/user.middleware.js";
+import multer from "multer";
+
+const upload = multer();
 
 const route = express.Router();
 
-route.post("/signup", userLog, userSignup);
+route.post("/signup", userLog,upload.none(), userSignup);
 route.post("/login", userLog, userLogin);
-route.post("/logout", userLog, userLogout);
-route.put("/reset", userLog, userReset);
-route.put("/update", userLog, userUpdate);
-route.delete("/delete", userLog, userDelete);
-route.get("/check", userLog, userCheck);
+route.post("/logout", userLog,confirmUser, userLogout);
+route.put("/reset", userLog, confirmUser,userReset);
+route.put("/update",userLog,confirmUser, userUpdate);
+route.delete("/delete", userLog,confirmUser, userDelete);
+route.get("/check", userLog,confirmUser, userCheck);
 
 
 export default route;

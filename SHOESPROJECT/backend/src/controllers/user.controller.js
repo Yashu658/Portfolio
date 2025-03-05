@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import generateToken from "../lib/auth.js";
 
+
 export const userSignup = async (req, res, next) => {
   try {
     const { fullName, email, password, gender, age, mobile } = req.body;
@@ -83,6 +84,7 @@ export const userLogin = async (req, res, next) => {
 
 export const userLogout = (req, res, next) => {
   try {
+    res.cookie("jwt", "");
     res.status(200).json({ message: "User Logout Sucessfull" });
   } catch (error) {
     error.statusCode = 400;
@@ -93,17 +95,23 @@ export const userLogout = (req, res, next) => {
 export const userUpdate = async (req, res, next) => {
   try {
     const { fullName, gender, age, mobile } = req.body;
-    const userID = req.verifiedUSer._id;
-
-
-    const UpdatedUser = await User.findByIdAndUpdate(userID, {
-      fullName,
-      gender,
-      age,
-      mobile,
-    });
-
-    res.status(200).json({ message: "User Update Sucessfull" , UpdatedUser});
+     console.log("done");
+    const userID = req.verifiedUser._id;
+    console.log("verify");
+    
+   
+    const UpdatedUser = await User.findByIdAndUpdate(
+      { _id: userID },
+      {
+        fullName,
+        gender,
+        age,
+        mobile,
+        
+      },
+      { new: true } //show new updated data in console current value
+    );
+    res.status(200).json({ message: "User Update Sucessfull", UpdatedUser });
   } catch (error) {
     error.statusCode = 400;
     next(error);
@@ -112,31 +120,40 @@ export const userUpdate = async (req, res, next) => {
 
 export const userReset = async (req, res, next) => {
   try {
-    const { oldPassword , newPassword } = req.body;
-    const userID = req.verifiedUSer._id;
+    const { oldPassword, newPassword } = req.body;
+    const userID = req.verifiedUser._id;
 
-    const checkpasword = await bcrypt.compare(oldPassword, req.verifiedUSer.password);
+    const checkpasword = await bcrypt.compare(
+      oldPassword,
+      req.verifiedUser.password
+    );
     if (!checkpasword) {
       const er = new Error("Incorrect Password");
       er.statusCode = 401;
       next(er);
       return;
     }
-
     const encryptedPassword = await bcrypt.hash(newPassword, 10);
-
-    const UpdatedUser = await User.findByIdAndUpdate(userID, {
-     password:encryptedPassword,
-    });
-    res.status(200).json({ message: "Password Changed Sucessfull"});
+    const UpdatedUser = await User.findByIdAndUpdate(
+      { _id: userID },
+      {
+        password: encryptedPassword,
+      },
+      { new: true }
+    );
+    res.status(200).json({ message: "Password Changed Sucessfull" });
   } catch (error) {
     error.statusCode = 400;
     next(error);
   }
 };
 
-export const userDelete = (req, res, next) => {
+export const userDelete = async (req, res, next) => {
   try {
+    const userID = req.verifiedUser._id;
+    //.findByIdAndDelete() see in mongooes doc.
+    const confimDelete = await User.findByIdAndDelete({ _id: userID }); //in real project only isvalid=false  not delete. For future testing
+
     res.status(200).json({ message: "User Delete Sucessfull" });
   } catch (error) {
     error.statusCode = 400;
@@ -144,10 +161,16 @@ export const userDelete = (req, res, next) => {
   }
 };
 
+
+
+
+
 export const userCheck = (req, res, next) => {
   try {
-    res.status(200).json({ message: "User Check Sucessfull" });
+    const { fullName, email, gender, age, mobile } = req.verifiedUser; //show data in frontent
+    res.status(200).json({ fullName, email, gender, age, mobile }); //show data in frontent
   } catch (error) {
+    console.error("Error in userCheck:", error);
     error.statusCode = 400;
     next(error);
   }
