@@ -2,7 +2,7 @@ const URL = "./mekeup.json";;
 
 async function fetchitems() {
     
-        const response = await fetch(URL);
+  const response = await fetch(URL);
   const data = await response.json();
   const makeup = data.makeup;
 

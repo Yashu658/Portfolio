@@ -1,6 +1,6 @@
 import React from "react";
-import Dice from "../assets/image/dice.png";
-import Tasklist from "../assets/image/tasklist.png";
+import Dice from "../assets/image/dicegame.png";
+import Tasklist from "../assets/image/tasklist1.png";
 import Port from "../assets/image/portfolio.png";
 import Ecommerce from "../assets/image/e-commerce.jpeg";
 
@@ -22,7 +22,7 @@ const Projects = () => {
               A dice game that generates random numbers and determines the outcome based on chance.
             </p>
             <a
-              href="https://your-dice-game-link.com"
+              href="https://67c8a84dec2e76c53e8dd98e--imaginative-cannoli-5fc46b.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-3 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition-all"
@@ -30,7 +30,7 @@ const Projects = () => {
               Visit Project
             </a>
           </div>
-          <img src={Dice} alt="Dice Game"  className="w-36 sm:w-40 rounded-lg shadow-md transition-transform hover:scale-105" />
+          <img src={Dice} alt="Dice Game"  className="w-50 sm:w-40 rounded-lg shadow-md transition-transform hover:scale-105" />
         </div>
 
 
@@ -52,7 +52,7 @@ const Projects = () => {
               Visit Project
             </a>
           </div>
-          <img src={Tasklist} alt="Task List"  className="w-36 sm:w-40 rounded-lg shadow-md transition-transform hover:scale-105" />
+          <img src={Tasklist} alt="Task List"  className="w-36 sm:w-40 rounded-lg shadow-md transition-transform hover:scale-110" />
         </div>
 
 

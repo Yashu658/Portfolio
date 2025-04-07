@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar";
-
-import Home from "./pages/home";
+import Footer from "./components/footer";
+import Home from "./pages/Home";
 import NewCollection from "./pages/NewCollection";
 import Men from "./pages/men";
 import Women from "./pages/Women";
@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/updateProfile" element={<UpdateProfile/>}/>
        
       </Routes>
+      <Footer/>
     </Router>
   );
 }

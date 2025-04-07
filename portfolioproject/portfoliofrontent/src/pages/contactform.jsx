@@ -1,4 +1,6 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -33,8 +35,8 @@ const ContactForm = () => {
     }
 
     // Message Validation
-    if (data.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters long.";
+    if (data.message.trim().length < 2) {
+      newErrors.message = "Message must be at least 2 characters long.";
       valid = false;
     }
 
@@ -51,12 +53,30 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted:", formData);
-      alert("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" }); // Clear form
-      setIsValid(false); // Reset validation state
-    }
+    if (!validateForm()) return;
+
+    emailjs
+      .send(
+        "service_yd6llv9",  // EmailJS Service ID
+        "template_82yibkr", //  EmailJS Template ID
+        {
+          from_name: formData.name, 
+          from_email: formData.email,
+          message: formData.message,
+        },
+        emailjs.init("9rsia7-YA1_yQrCba")  // EmailJS public key
+      )
+      .then(
+        (response) => {
+          console.log("Email successfully sent!", response.status, response.text);
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" }); 
+          setIsValid(false); 
+        },
+        (error) => {
+          console.error("Error sending email:", error);
+          alert("Failed to send message.");
+      });
   };
 
   return (
@@ -113,7 +133,7 @@ const ContactForm = () => {
           className={`w-full bg-gray-800 text-white py-2 rounded-full font-semibold transition-all ${
             !isValid ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
           }`}
-          disabled={!isValid} // ✅ Uses state instead of calling validateForm()
+          disabled={!isValid} 
         >
           Send Message
         </button>

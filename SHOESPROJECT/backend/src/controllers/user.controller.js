@@ -1,7 +1,7 @@
+
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import generateToken from "../lib/auth.js";
-
 
 export const userSignup = async (req, res, next) => {
   try {
@@ -94,12 +94,10 @@ export const userLogout = (req, res, next) => {
 
 export const userUpdate = async (req, res, next) => {
   try {
-    const { fullName, gender, age, mobile } = req.body;
-     console.log("done");
+    const { fullName, gender, age, mobile, image } = req.body;
+    console.log(fullName, gender, age, mobile, image);
     const userID = req.verifiedUser._id;
-    console.log("verify");
-    
-   
+
     const UpdatedUser = await User.findByIdAndUpdate(
       { _id: userID },
       {
@@ -107,10 +105,11 @@ export const userUpdate = async (req, res, next) => {
         gender,
         age,
         mobile,
-        
+        profilePic: image,
       },
-      { new: true } //show new updated data in console current value
-    );
+      { new: true }//show new updated data in console current value
+    ).select("-password");
+
     res.status(200).json({ message: "User Update Sucessfull", UpdatedUser });
   } catch (error) {
     error.statusCode = 400;
@@ -133,7 +132,9 @@ export const userReset = async (req, res, next) => {
       next(er);
       return;
     }
+
     const encryptedPassword = await bcrypt.hash(newPassword, 10);
+
     const UpdatedUser = await User.findByIdAndUpdate(
       { _id: userID },
       {
@@ -153,7 +154,6 @@ export const userDelete = async (req, res, next) => {
     const userID = req.verifiedUser._id;
     //.findByIdAndDelete() see in mongooes doc.
     const confimDelete = await User.findByIdAndDelete({ _id: userID }); //in real project only isvalid=false  not delete. For future testing
-
     res.status(200).json({ message: "User Delete Sucessfull" });
   } catch (error) {
     error.statusCode = 400;
@@ -161,16 +161,13 @@ export const userDelete = async (req, res, next) => {
   }
 };
 
-
-
-
-
 export const userCheck = (req, res, next) => {
   try {
-    const { fullName, email, gender, age, mobile } = req.verifiedUser; //show data in frontent
-    res.status(200).json({ fullName, email, gender, age, mobile }); //show data in frontent
+    const { fullName, email, gender, age, mobile, profilePic } =
+      req.verifiedUser;//show data in frontent
+
+    res.status(200).json({ fullName, email, gender, age, mobile, profilePic });//show data in frontent
   } catch (error) {
-    console.error("Error in userCheck:", error);
     error.statusCode = 400;
     next(error);
   }

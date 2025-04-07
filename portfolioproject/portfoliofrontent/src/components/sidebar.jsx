@@ -12,7 +12,7 @@ const Sidebar = () => {
       <h1 className="text-yellow-300 text-3xl font-bold mx-4 px-2 tracking-widest">YS</h1>
         </NavLink>
       <div className="flex gap-6">
-         {/* Hamburger Menu Button (Visible on Small Screens) */}
+        
       <button
         className="text-white text-3xl md:hidden"
         onClick={() => setIsOpen(!isOpen)}
@@ -20,7 +20,7 @@ const Sidebar = () => {
         {isOpen ? <FiX /> : <FiMenu />}
       </button>
 
-      {/* Navigation Links */}
+   
       <div
         className={`absolute md:static top-16 left-0 w-full md:w-auto bg-black md:bg-transparent flex flex-col md:flex-row md:gap-6 transition-all duration-300 ${
           isOpen ? "block" : "hidden"
@@ -32,13 +32,13 @@ const Sidebar = () => {
             <span  className="block text-white text-2xl font-semibold px-6 py-3 hover:text-yellow-300 md:inline" onClick={() => setIsOpen(false)}>
               Home
             </span>
-          </NavLink>
-          <NavLink to={"/pro"}>
+        </NavLink>
+        <NavLink to={"/pro"}>
             <span className="block text-white text-2xl font-semibold px-6 py-3 hover:text-yellow-300 md:inline" onClick={() => setIsOpen(false)}>
               Projects
             </span>
-          </NavLink>
-          <NavLink to={"/quali"}>
+        </NavLink>
+         <NavLink to={"/quali"}>
             <span  className="block text-white text-2xl font-semibold px-6 py-3 hover:text-yellow-300 md:inline" onClick={() => setIsOpen(false)}>
               Qualification
             </span>
@@ -48,8 +48,7 @@ const Sidebar = () => {
             ContactMe
             </span>
           </NavLink>
-        </div>
-          
+        </div>  
         </nav> 
       </div>
     
