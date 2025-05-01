@@ -58,7 +58,7 @@ export const userLogin = async (req, res, next) => {
     }
 
     const getUser = await User.findOne({ email });
-    if (email !== getUser.email) {
+    if (email == !getUser.email) {
       const er = new Error("User Not Found !!");
       er.statusCode = 404;
       next(er);

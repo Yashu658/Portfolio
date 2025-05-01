@@ -10,9 +10,10 @@ const app = express();
 
 app.use(
   cors({
-  origin:"http://localhost:5173",
-  credentials:true,
-}))
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
     next(error);
   }
 });
+
 
 //Default error Handeling middleware
 app.use((err, req, res, next) => {
