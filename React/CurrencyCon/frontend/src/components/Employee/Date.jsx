@@ -11,7 +11,7 @@ const Date = () => {
     "2025-05": {
       20: { status: "1", inTime: "09:02 AM", outTime: "05:45 PM" },
       21: { status: "0", inTime: null, outTime: null },
-      22: { status: "1", inTime: "01:10 PM", outTime: "06:40 PM" }, // Half Day
+      22: { status: "1", inTime: "01:10 PM", outTime: "06:40 PM" }, 
       23: { status: "L", type: "Casual", inTime: null, outTime: null },
       24: { status: "1", inTime: "09:00 AM", outTime: "06:00 PM" },
       25: { status: "L", type: "Sick", inTime: null, outTime: null },
